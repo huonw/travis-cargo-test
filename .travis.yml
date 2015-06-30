@@ -23,4 +23,5 @@ script:
 after_success:
   - travis-cargo --only 1.1.0 doc-upload
   - travis-cargo coverage --no-sudo
+  - rm -rf kcov
   - travis-cargo coveralls --no-sudo
