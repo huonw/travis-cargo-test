@@ -1,0 +1,19 @@
+language: rust
+rust:
+  - 1.1.0
+  - beta
+  - nightly
+
+before_script:
+  - pip install https://github.com/huonw/travis-cargo/archive/test.zip --user && export PATH=$HOME/.local/bin:$PATH
+
+script:
+  - |
+      travis-cargo build &&
+      travis-cargo test &&
+      travis-cargo bench &&
+      travis-cargo doc
+after_success:
+  - travis-cargo --only 1.1.0 doc-upload
+  - travis-cargo coverage --no-sudo
+  - travis-cargo coveralls --no-sudo
