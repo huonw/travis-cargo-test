@@ -16,7 +16,7 @@ rust:
   - nightly
 
 before_script:
-  - pip install https://github.com/huonw/travis-cargo/archive/handle-versions.zip --user && export PATH=$HOME/.local/bin:$PATH
+  - pip install https://github.com/huonw/travis-cargo/archive/test2.zip --user && export PATH=$HOME/.local/bin:$PATH
 
 script:
   - |
