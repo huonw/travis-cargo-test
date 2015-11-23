@@ -6,6 +6,7 @@ addons:
       - libcurl4-openssl-dev
       - libelf-dev
       - libdw-dev
+      - binutils-dev
 rust:
   - 1.0.0
   - 1.1.0
@@ -16,7 +17,7 @@ rust:
   - nightly
 
 before_script:
-  - pip install https://github.com/huonw/travis-cargo/archive/master.zip --user && export PATH=$HOME/.local/bin:$PATH
+  - pip install https://github.com/huonw/travis-cargo/archive/verify.zip --user && export PATH=$HOME/.local/bin:$PATH
 
 script:
   - |
@@ -26,9 +27,9 @@ script:
       travis-cargo doc
 after_success:
   - travis-cargo --only stable doc-upload
-  - travis-cargo coverage --no-sudo
+  - travis-cargo coverage --no-sudo --verify
   - rm -rf kcov
-  - travis-cargo coveralls --no-sudo
+  - travis-cargo coveralls --no-sudo --verify
 
 env:
   global:
